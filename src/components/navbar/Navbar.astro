@@ -1,0 +1,117 @@
+---
+import type {iconPaths} from '@/utils/IconPaths'
+import Icon from '@/components/globals/Icon.astro';
+import Toggle from '@/components/navbar/Toggle.astro';
+
+/* Items del Menú */
+const textLinks: {
+                    label: string,
+                    href: string 
+                } [] = [
+                    {label: 'Inicio', href: ''},
+                    {label: 'Proyectos', href: ''},
+                    {label: 'Sobre Mí', href: ''}
+                ];
+
+/** Enlaces a redes sociales */
+const iconLinks: { label: string, 
+                    href: string,
+                    icon: keyof typeof iconPaths
+                } [] = [
+                        { label: 'GitHub', href: 'https://github.com/Lombardimn', icon: 'github-logo' },
+                        { label: 'LinkedIn', href: 'https://linkedin.com/in/mnlombardi/', icon: 'linkedin-logo' },
+                        { label: 'Instagram', href: 'https://www.instagram.com/lombardimn/', icon: 'instagram-logo' },
+                    ];
+---
+
+<nav>
+    <section class="menu-header">
+        <a href="/" class="site-title">
+        <img src="/public/logo.png" alt="Imagen Logo de LombardiDev">
+        Lombardi.Dev
+        </a>
+        <menu-button>
+            <template>
+                <button class="menu-button" aria-expanded="false">
+                    <span class="sr-only">Menú</span>
+                    <Icon icon="list" />
+                </button>
+            </template>
+        </menu-button>
+    </section>
+    <section id="menu-content">
+        <ul class="nav-items">
+            {
+                textLinks.map(({label, href}) =>(
+                    <li>
+                        <a
+                            aria-current={Astro.url.pathname === href}
+                            class:list={['link',{
+                                active: Astro.url.pathname === href ||
+                                        (href !== '/' && Astro.url.pathname.startsWith(href)),
+                            },]}
+                            href={href}
+                        >
+                            {label}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+        <div class="menu-footer">
+            <div class="socials">
+                {
+                    iconLinks.map(({ href, icon, label }) => (
+                        <a href={href} class="social">
+                            <span class="sr-only">{label}</span>
+                            <Icon icon={icon} />
+                        </a>
+                    ))
+                }
+            </div>
+            <div class="theme-toggle">
+                <Toggle />
+            </div>
+        </div>
+    </section>
+</nav>
+
+<script>
+    class MenuButton extends HTMLElement {
+		constructor() {
+			super();
+
+            /** Inyectar el botón de cambio de menú cuando se ejecuta JS. */ 
+			this.appendChild(this.querySelector('template')!.content.cloneNode(true));
+			const btn = this.querySelector('button')!;
+
+            /** Ocultar menú (se muestra por defecto para soportar navegadores no-JS). */
+			const menu = document.getElementById('menu-content')!;
+			if (menu){
+                menu.hidden = true;
+            }
+
+            /** Establece si el menú está expandido o contraído. */
+			const setExpanded = (expand: boolean) => {
+				btn.setAttribute('aria-expanded', expand ? 'true' : 'false');
+                if (menu){
+                    menu.hidden = !expand;
+                }
+			};
+
+            /** Alternar la visibilidad del menú cuando se hace clic en el botón de menú. */
+			btn.addEventListener('click', () => setExpanded(menu.hidden));
+
+            /** Ocultar botón de menú para pantallas grandes. */
+			const handleViewports = (e: MediaQueryList | MediaQueryListEvent) => {
+				setExpanded(e.matches);
+				btn.hidden = e.matches;
+			};
+
+            const mediaQueries = window.matchMedia('(min-width: 50em)');
+			handleViewports(mediaQueries);
+			mediaQueries.addEventListener('change', handleViewports);
+        };
+    }
+    customElements.define('menu-button', MenuButton);
+</script>

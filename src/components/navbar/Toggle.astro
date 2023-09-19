@@ -1,0 +1,43 @@
+---
+import Icon from "@/components/globals/Icon.astro";
+---
+
+<theme-toggle>
+    <button>
+        <span class="sr-only">Dark Theme</span>
+        <span class="icon light">
+            <Icon icon='sun' />
+        </span>
+        <span class="icon dark">
+            <Icon icon='moon-stars'/>
+        </span>
+    </button>
+</theme-toggle>
+
+<script>
+    class ThemeToggle extends HTMLElement {
+        constructor(){
+            super();
+        
+            const button = this.querySelector('button')!;
+
+            /** Configura el tema en modo oscuro/claro. */
+            const setTheme = (dark: boolean) => {
+                document.documentElement.classList[dark ? 'add' : 'remove']('theme-dark');
+                button.setAttribute('aria-pressed', String(dark));
+            };
+
+            // Alternar el tema cuando un usuario hace clic en el botón.
+            button.addEventListener('click', () => setTheme(!this.isDark()));
+
+            // Inicializar el estado del botón para reflejar el tema actual.
+            setTheme(this.isDark());
+        };
+
+        isDark(){
+            return document.documentElement.classList.contains('theme-dark');
+        }
+    }
+
+    customElements.define('theme-toggle', ThemeToggle);
+</script>
