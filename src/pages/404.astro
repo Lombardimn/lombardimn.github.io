@@ -1,0 +1,48 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+---
+
+<Layout 
+    title="Not Found" 
+    description="404 Error - this page was not found"
+>   
+    <div class="content">
+        <h2 class="title-404">Page Not Found</h2>
+        <img
+            class="img-error" 
+            src="/assets/icons/404.svg" 
+            alt="Un robot en el suelo al que se le salieron piezas internas y tiene un cartel indicando el error 404 de pagina no encontrada."
+        >
+    </div>
+</Layout>
+
+<style>
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+
+    .title-404 {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .img-error {
+        height: 24rem;
+        width: 24rem;
+        margin: auto;
+    }
+
+    @media (min-width: 48em) {
+        .title-404 {
+            font-size: var(--text-5xl);
+        }
+        
+        .img-error {
+            height: 32rem;
+            width: 32rem;
+        }
+    }
+</style>
