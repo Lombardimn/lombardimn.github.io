@@ -10,7 +10,7 @@ const {
     title,
     subtitle,
     tagline,
-    align = 'center'
+    align = 'start'
 } = Astro.props
 ---
 
@@ -28,11 +28,43 @@ const {
 </article>
 
 <style>
-    .hero {
-        font-size: var(--text-lg);
-    }
+	.hero {
+		font-size: var(--text-lg);
+		text-align: center;
+	}
+
+	.title,
+	.tagline {
+		max-width: 37ch;
+		margin-inline: auto;
+	}
+
+	.title {
+		font-size: var(--text-3xl);
+		color: var(--gray-0);
+	}
 
     #span-title{
-		opacity: 0.7;
+		opacity: 0.5;
+        color: aqua;
+	}
+
+	@media (min-width: 50em) {
+		.hero {
+			font-size: var(--text-xl);
+		}
+
+		.start {
+			text-align: start;
+		}
+
+		.start .title,
+		.start .tagline {
+			margin-inline: unset;
+		}
+
+		.title {
+			font-size: var(--text-5xl);
+		}
 	}
 </style>

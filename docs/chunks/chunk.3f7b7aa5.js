@@ -1,5 +1,35 @@
-import { c as createAstro, a as createComponent, r as renderTemplate, m as maybeRenderHead, b as addAttribute, s as spreadAttributes, u as unescapeHTML, d as renderComponent, e as renderHead, f as renderSlot } from './chunk.dcbdc4e2.js';
+import { c as createAstro, a as createComponent, r as renderTemplate, m as maybeRenderHead, b as addAttribute, s as spreadAttributes, u as unescapeHTML, d as renderComponent, e as renderHead, f as renderSlot, A as AstroError, C as CollectionDoesNotExistError, U as UnknownContentCollectionError, g as renderUniqueStylesheet, h as renderScriptElement, i as createHeadAndContent } from './chunk.2a316f32.js';
 /* empty css                */
+function prependForwardSlash(path) {
+  return path[0] === "/" ? path : "/" + path;
+}
+function removeTrailingForwardSlash(path) {
+  return path.endsWith("/") ? path.slice(0, path.length - 1) : path;
+}
+function removeLeadingForwardSlash(path) {
+  return path.startsWith("/") ? path.substring(1) : path;
+}
+function trimSlashes(path) {
+  return path.replace(/^\/|\/$/g, "");
+}
+function isString(path) {
+  return typeof path === "string" || path instanceof String;
+}
+function joinPaths(...paths) {
+  return paths.filter(isString).map((path, i) => {
+    if (i === 0) {
+      return removeTrailingForwardSlash(path);
+    } else if (i === paths.length - 1) {
+      return removeLeadingForwardSlash(path);
+    } else {
+      return trimSlashes(path);
+    }
+  }).join("/");
+}
+function isRemotePath(src) {
+  return /^(http|ftp|https|ws):?\/\//.test(src) || src.startsWith("data:");
+}
+
 const iconPaths = {
   "terminal-window": `<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="m80 96 40 32-40 32m56 0h40"/><rect width="192" height="160" x="32" y="48" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16.97" rx="8.5"/>`,
   trophy: `<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M56 56v55.1c0 39.7 31.8 72.6 71.5 72.9a72 72 0 0 0 72.5-72V56a8 8 0 0 0-8-8H64a8 8 0 0 0-8 8Zm40 168h64m-32-40v40"/><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M198.2 128h9.8a32 32 0 0 0 32-32V80a8 8 0 0 0-8-8h-32M58 128H47.9a32 32 0 0 1-32-32V80a8 8 0 0 1 8-8h32"/>`,
@@ -29,9 +59,9 @@ const iconPaths = {
   monitor: `<path d="M208,40H48A24,24,0,0,0,24,64V176a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V64A24,24,0,0,0,208,40Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V64a8,8,0,0,1,8-8H208a8,8,0,0,1,8,8Zm-48,48a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,224Z"></path>`
 };
 
-const $$Astro$b = createAstro();
+const $$Astro$d = createAstro();
 const $$Icon = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$b, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$d, $$props, $$slots);
   Astro2.self = $$Icon;
   const {
     color = "currentcolor",
@@ -47,10 +77,10 @@ const $$Icon = createComponent(async ($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" aria-hidden="true"${addAttribute(gradient ? `url(#${gradientId})` : color, "stroke")}${addAttribute(gradient ? `url(#${gradientId})` : color, "fill")}${spreadAttributes(attrs, "attrs", { "class": "astro-rpmnkggn" })} data-astro-cid-rpmnkggn><g data-astro-cid-rpmnkggn>${unescapeHTML(iconPath)}</g>${gradient && renderTemplate`<linearGradient${addAttribute(gradientId, "id")} x1="23" x2="235" y1="43" y2="202" gradientUnits="userSpaceOnUse" data-astro-cid-rpmnkggn><stop stop-color="var(--gradient-stop-1)" data-astro-cid-rpmnkggn></stop><stop offset=".5" stop-color="var(--gradient-stop-2)" data-astro-cid-rpmnkggn></stop><stop offset="1" stop-color="var(--gradient-stop-3)" data-astro-cid-rpmnkggn></stop></linearGradient>`}</svg>`;
 }, "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/components/globals/Icon.astro", void 0);
 
-const $$Astro$a = createAstro();
+const $$Astro$c = createAstro();
 const currentYear = (/* @__PURE__ */ new Date()).getFullYear();
 const $$Footer = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$a, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$c, $$props, $$slots);
   Astro2.self = $$Footer;
   return renderTemplate`${maybeRenderHead()}<footer data-astro-cid-dwl4onjj><div class="group" data-astro-cid-dwl4onjj><p data-astro-cid-dwl4onjj>
 Designed & Developed with
@@ -63,9 +93,9 @@ var __freeze = Object.freeze;
 var __defProp = Object.defineProperty;
 var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(raw || cooked.slice()) }));
 var _a;
-const $$Astro$9 = createAstro();
+const $$Astro$b = createAstro();
 const $$MainHead = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$9, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$b, $$props, $$slots);
   Astro2.self = $$MainHead;
   const {
     title = "Matias Lombardi: Personal Site",
@@ -100,16 +130,16 @@ const $$MainHead = createComponent(async ($$result, $$props, $$slots) => {
 <\/script>`])), addAttribute(description, "content"), addAttribute(Astro2.generator, "content"), title);
 }, "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/components/head/MainHead.astro", void 0);
 
-const $$Astro$8 = createAstro();
+const $$Astro$a = createAstro();
 const $$Toggle = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$8, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$a, $$props, $$slots);
   Astro2.self = $$Toggle;
   return renderTemplate`${renderComponent($$result, "theme-toggle", "theme-toggle", { "data-astro-cid-zimxxk3z": true }, { "default": () => renderTemplate`${maybeRenderHead()}<button data-astro-cid-zimxxk3z><span class="sr-only" data-astro-cid-zimxxk3z>Dark Theme</span><span class="icon light" data-astro-cid-zimxxk3z>${renderComponent($$result, "Icon", $$Icon, { "icon": "sun", "data-astro-cid-zimxxk3z": true })}</span><span class="icon dark" data-astro-cid-zimxxk3z>${renderComponent($$result, "Icon", $$Icon, { "icon": "moon-stars", "data-astro-cid-zimxxk3z": true })}</span></button>` })}`;
 }, "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/components/navbar/Toggle.astro", void 0);
 
-const $$Astro$7 = createAstro();
+const $$Astro$9 = createAstro();
 const $$Navbar = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$7, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$9, $$props, $$slots);
   Astro2.self = $$Navbar;
   const textLinks = [
     { label: "Inicio", href: "" },
@@ -126,37 +156,37 @@ const $$Navbar = createComponent(async ($$result, $$props, $$slots) => {
   }], "class:list")}${addAttribute(href, "href")} data-astro-cid-s4yhteap>${label}</a></li>`)}</ul><div class="menu-footer" data-astro-cid-s4yhteap><div class="socials" data-astro-cid-s4yhteap>${iconLinks.map(({ href, icon, label }) => renderTemplate`<a${addAttribute(href, "href")} class="social" data-astro-cid-s4yhteap><span class="sr-only" data-astro-cid-s4yhteap>${label}</span>${renderComponent($$result, "Icon", $$Icon, { "icon": icon, "data-astro-cid-s4yhteap": true })}</a>`)}</div><div class="theme-toggle" data-astro-cid-s4yhteap>${renderComponent($$result, "Toggle", $$Toggle, { "data-astro-cid-s4yhteap": true })}</div></div></section></nav>`;
 }, "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/components/navbar/Navbar.astro", void 0);
 
-const $$Astro$6 = createAstro();
+const $$Astro$8 = createAstro();
 const $$Layout = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$6, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$8, $$props, $$slots);
   Astro2.self = $$Layout;
   const { title, description } = Astro2.props;
   return renderTemplate`<html lang="es" data-astro-cid-sckkx6r4><head>${renderComponent($$result, "MainHead", $$MainHead, { "title": title, "description": description, "data-astro-cid-sckkx6r4": true })}${renderHead()}</head><body class="stack backgrounds" data-astro-cid-sckkx6r4><header data-astro-cid-sckkx6r4>${renderComponent($$result, "Navbar", $$Navbar, { "data-astro-cid-sckkx6r4": true })}</header><main data-astro-cid-sckkx6r4>${renderSlot($$result, $$slots["default"])}${renderComponent($$result, "Footer", $$Footer, { "data-astro-cid-sckkx6r4": true })}</main></body></html>`;
 }, "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/layouts/Layout.astro", void 0);
 
-const $$Astro$5 = createAstro();
+const $$Astro$7 = createAstro();
 const $$Hero = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$5, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$7, $$props, $$slots);
   Astro2.self = $$Hero;
   const {
     title,
     subtitle,
     tagline,
-    align = "center"
+    align = "start"
   } = Astro2.props;
   return renderTemplate`${maybeRenderHead()}<article${addAttribute(["hero stack gap-4", align], "class:list")} data-astro-cid-flpxnje5><div class="stack gap-2" data-astro-cid-flpxnje5><h1 class="title" data-astro-cid-flpxnje5><span id="span-title" data-astro-cid-flpxnje5>${subtitle}</span>${title}</h1>${tagline && renderTemplate`<p class="tagline" data-astro-cid-flpxnje5>${tagline}</p>`}</div>${renderSlot($$result, $$slots["default"])}</article>`;
 }, "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/components/globals/Hero.astro", void 0);
 
-const $$Astro$4 = createAstro();
+const $$Astro$6 = createAstro();
 const $$Pill = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$4, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$6, $$props, $$slots);
   Astro2.self = $$Pill;
   return renderTemplate`${maybeRenderHead()}<div class="pill" data-astro-cid-cmlj5n7c>${renderSlot($$result, $$slots["default"])}</div>`;
 }, "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/components/main/Pill.astro", void 0);
 
-const $$Astro$3 = createAstro();
+const $$Astro$5 = createAstro();
 const $$Skill = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$5, $$props, $$slots);
   Astro2.self = $$Skill;
   return renderTemplate`${maybeRenderHead()}<section class="box skills" data-astro-cid-kb2fbe5o><article class="stack gap-2 lg:gap-4" data-astro-cid-kb2fbe5o>${renderComponent($$result, "Icon", $$Icon, { "icon": "terminal-window", "color": "var(--accent-regular)", "size": "2.5rem", "gradient": true, "data-astro-cid-kb2fbe5o": true })}<h2 data-astro-cid-kb2fbe5o>FullStack Java</h2><p data-astro-cid-kb2fbe5o>
 Este rol me brinda la flexibilidad de adaptarme a diversos proyectos y asumir diferentes roles en el ciclo de desarrollo. Además me permite disfrutar de oportunidades de aprendizaje.
@@ -167,17 +197,31 @@ Traduciendo requerimientos de clientes en soluciones tecnológicas eficaces. Mi 
 </p></article></section>`;
 }, "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/components/globals/Skill.astro", void 0);
 
-const $$Astro$2 = createAstro();
+const $$Astro$4 = createAstro();
+const $$Grid = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$4, $$props, $$slots);
+  Astro2.self = $$Grid;
+  const { variant } = Astro2.props;
+  return renderTemplate`${maybeRenderHead()}<ul${addAttribute([
+    "grid",
+    {
+      offset: variant === "offset",
+      small: variant === "small"
+    }
+  ], "class:list")} data-astro-cid-6ndpajjo>${renderSlot($$result, $$slots["default"])}</ul>`;
+}, "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/components/main/Grid.astro", void 0);
+
+const $$Astro$3 = createAstro();
 const $$ActionButton = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
   Astro2.self = $$ActionButton;
   const { href } = Astro2.props;
   return renderTemplate`${maybeRenderHead()}<a${addAttribute(href, "href")} data-astro-cid-o4d3io7c>${renderSlot($$result, $$slots["default"])}</a>`;
 }, "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/components/globals/ActionButton.astro", void 0);
 
-const $$Astro$1 = createAstro();
+const $$Astro$2 = createAstro();
 const $$Contact = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
   Astro2.self = $$Contact;
   return renderTemplate`${maybeRenderHead()}<aside data-astro-cid-cgl7laum><h2 class="title-h2" data-astro-cid-cgl7laum>
 ¿Estaría interesado en colaborar en una oportunidad de trabajo conjunto?
@@ -186,10 +230,225 @@ Contacto
 ${renderComponent($$result2, "Icon", $$Icon, { "icon": "paper-plane-tilt", "size": "1.2em", "data-astro-cid-cgl7laum": true })}` })}</aside>`;
 }, "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/components/globals/Contact.astro", void 0);
 
+const $$Astro$1 = createAstro();
+const $$WorkPreview = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
+  Astro2.self = $$WorkPreview;
+  const { data, slug } = Astro2.props.project;
+  return renderTemplate`${maybeRenderHead()}<a class="card"${addAttribute(`/projects/${slug}`, "href")} data-astro-cid-eqz2qkwt><span class="title" data-astro-cid-eqz2qkwt>${data.title}</span><img${addAttribute(data.img, "src")}${addAttribute(data.img_alt || "", "alt")} loading="lazy" decoding="async" data-astro-cid-eqz2qkwt></a>`;
+}, "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/components/globals/WorkPreview.astro", void 0);
+
+function createCollectionToGlobResultMap({
+  globResult,
+  contentDir
+}) {
+  const collectionToGlobResultMap = {};
+  for (const key in globResult) {
+    const keyRelativeToContentDir = key.replace(new RegExp(`^${contentDir}`), "");
+    const segments = keyRelativeToContentDir.split("/");
+    if (segments.length <= 1)
+      continue;
+    const collection = segments[0];
+    collectionToGlobResultMap[collection] ??= {};
+    collectionToGlobResultMap[collection][key] = globResult[key];
+  }
+  return collectionToGlobResultMap;
+}
+const cacheEntriesByCollection = /* @__PURE__ */ new Map();
+function createGetCollection({
+  contentCollectionToEntryMap,
+  dataCollectionToEntryMap,
+  getRenderEntryImport
+}) {
+  return async function getCollection(collection, filter) {
+    let type;
+    if (collection in contentCollectionToEntryMap) {
+      type = "content";
+    } else if (collection in dataCollectionToEntryMap) {
+      type = "data";
+    } else {
+      throw new AstroError({
+        ...CollectionDoesNotExistError,
+        message: CollectionDoesNotExistError.message(collection)
+      });
+    }
+    const lazyImports = Object.values(
+      type === "content" ? contentCollectionToEntryMap[collection] : dataCollectionToEntryMap[collection]
+    );
+    let entries = [];
+    if (cacheEntriesByCollection.has(collection)) {
+      entries = [...cacheEntriesByCollection.get(collection)];
+    } else {
+      entries = await Promise.all(
+        lazyImports.map(async (lazyImport) => {
+          const entry = await lazyImport();
+          return type === "content" ? {
+            id: entry.id,
+            slug: entry.slug,
+            body: entry.body,
+            collection: entry.collection,
+            data: entry.data,
+            async render() {
+              return render({
+                collection: entry.collection,
+                id: entry.id,
+                renderEntryImport: await getRenderEntryImport(collection, entry.slug)
+              });
+            }
+          } : {
+            id: entry.id,
+            collection: entry.collection,
+            data: entry.data
+          };
+        })
+      );
+      cacheEntriesByCollection.set(collection, entries);
+    }
+    if (typeof filter === "function") {
+      return entries.filter(filter);
+    } else {
+      return entries;
+    }
+  };
+}
+async function render({
+  collection,
+  id,
+  renderEntryImport
+}) {
+  const UnexpectedRenderError = new AstroError({
+    ...UnknownContentCollectionError,
+    message: `Unexpected error while rendering ${String(collection)} \u2192 ${String(id)}.`
+  });
+  if (typeof renderEntryImport !== "function")
+    throw UnexpectedRenderError;
+  const baseMod = await renderEntryImport();
+  if (baseMod == null || typeof baseMod !== "object")
+    throw UnexpectedRenderError;
+  const { default: defaultMod } = baseMod;
+  if (isPropagatedAssetsModule(defaultMod)) {
+    const { collectedStyles, collectedLinks, collectedScripts, getMod } = defaultMod;
+    if (typeof getMod !== "function")
+      throw UnexpectedRenderError;
+    const propagationMod = await getMod();
+    if (propagationMod == null || typeof propagationMod !== "object")
+      throw UnexpectedRenderError;
+    const Content = createComponent({
+      factory(result, baseProps, slots) {
+        let styles = "", links = "", scripts = "";
+        if (Array.isArray(collectedStyles)) {
+          styles = collectedStyles.map((style) => {
+            return renderUniqueStylesheet(result, {
+              type: "inline",
+              content: style
+            });
+          }).join("");
+        }
+        if (Array.isArray(collectedLinks)) {
+          links = collectedLinks.map((link) => {
+            return renderUniqueStylesheet(result, {
+              type: "external",
+              src: prependForwardSlash(link)
+            });
+          }).join("");
+        }
+        if (Array.isArray(collectedScripts)) {
+          scripts = collectedScripts.map((script) => renderScriptElement(script)).join("");
+        }
+        let props = baseProps;
+        if (id.endsWith("mdx")) {
+          props = {
+            components: propagationMod.components ?? {},
+            ...baseProps
+          };
+        }
+        return createHeadAndContent(
+          unescapeHTML(styles + links + scripts),
+          renderTemplate`${renderComponent(
+            result,
+            "Content",
+            propagationMod.Content,
+            props,
+            slots
+          )}`
+        );
+      },
+      propagation: "self"
+    });
+    return {
+      Content,
+      headings: propagationMod.getHeadings?.() ?? [],
+      remarkPluginFrontmatter: propagationMod.frontmatter ?? {}
+    };
+  } else if (baseMod.Content && typeof baseMod.Content === "function") {
+    return {
+      Content: baseMod.Content,
+      headings: baseMod.getHeadings?.() ?? [],
+      remarkPluginFrontmatter: baseMod.frontmatter ?? {}
+    };
+  } else {
+    throw UnexpectedRenderError;
+  }
+}
+function isPropagatedAssetsModule(module) {
+  return typeof module === "object" && module != null && "__astroPropagation" in module;
+}
+
+// astro-head-inject
+
+const contentDir = '/src/content/';
+
+const contentEntryGlob = /* #__PURE__ */ Object.assign({"/src/content/project/bloom-box.md": () => import('./chunk.248231b0.js'),"/src/content/project/h20.md": () => import('./chunk.8327b25f.js'),"/src/content/project/markdown-mystery-tour.md": () => import('./chunk.776d311a.js')
+
+});
+const contentCollectionToEntryMap = createCollectionToGlobResultMap({
+	globResult: contentEntryGlob,
+	contentDir,
+});
+
+const dataEntryGlob = /* #__PURE__ */ Object.assign({
+
+});
+const dataCollectionToEntryMap = createCollectionToGlobResultMap({
+	globResult: dataEntryGlob,
+	contentDir,
+});
+createCollectionToGlobResultMap({
+	globResult: { ...contentEntryGlob, ...dataEntryGlob },
+	contentDir,
+});
+
+let lookupMap = {};
+lookupMap = {"project":{"type":"content","entries":{"bloom-box":"/src/content/project/bloom-box.md","h20":"/src/content/project/h20.md","markdown-mystery-tour":"/src/content/project/markdown-mystery-tour.md"}}};
+
+function createGlobLookup(glob) {
+	return async (collection, lookupId) => {
+		const filePath = lookupMap[collection]?.entries[lookupId];
+
+		if (!filePath) return undefined;
+		return glob[collection][filePath];
+	};
+}
+
+const renderEntryGlob = /* #__PURE__ */ Object.assign({"/src/content/project/bloom-box.md": () => import('./chunk.3be7fe29.js'),"/src/content/project/h20.md": () => import('./chunk.0ab819d8.js'),"/src/content/project/markdown-mystery-tour.md": () => import('./chunk.1c581567.js')
+
+});
+const collectionToRenderEntryMap = createCollectionToGlobResultMap({
+	globResult: renderEntryGlob,
+	contentDir,
+});
+
+const getCollection = createGetCollection({
+	contentCollectionToEntryMap,
+	dataCollectionToEntryMap,
+	getRenderEntryImport: createGlobLookup(collectionToRenderEntryMap),
+});
+
 const $$Astro = createAstro();
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Index;
+  const projects = (await getCollection("project")).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()).slice(0, 4);
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Lombardi Matias", "data-astro-cid-j7pv25f6": true }, { "default": ($$result2) => renderTemplate`${maybeRenderHead()}<section class="stack gap-20 lg:gap-48" data-astro-cid-j7pv25f6><div class="wrapper stack gap-8 lg:gap-20" data-astro-cid-j7pv25f6><section class="hero" data-astro-cid-j7pv25f6>${renderComponent($$result2, "Hero", $$Hero, { "subtitle": "Hola a todos \u{1F44B}!\n", "title": "Soy Matias Lombardi", "tagline": "Analista Funcional, Desarrollador Frontend React & FullStack Java.", "data-astro-cid-j7pv25f6": true }, { "default": ($$result3) => renderTemplate`<article class="roles" data-astro-cid-j7pv25f6>${renderComponent($$result3, "Pill", $$Pill, { "data-astro-cid-j7pv25f6": true }, { "default": ($$result4) => renderTemplate`${renderComponent($$result4, "Icon", $$Icon, { "icon": "code", "size": "1.33", "data-astro-cid-j7pv25f6": true })}
 Metódico
 ` })}${renderComponent($$result3, "Pill", $$Pill, { "data-astro-cid-j7pv25f6": true }, { "default": ($$result4) => renderTemplate`${renderComponent($$result4, "Icon", $$Icon, { "icon": "microphone-stage", "size": "1.33em", "data-astro-cid-j7pv25f6": true })}
@@ -202,15 +461,7 @@ Analítico
 Proyectos
 </h3><p data-astro-cid-j7pv25f6>
 Echa un vistazo a algunos de mis trabajos destacados.
-</p></article><article class="gallery" data-astro-cid-j7pv25f6><!-- <Grid variant='offset'>
-						{
-							projects.map((project) => (
-								<li>
-									<PorfolioPreview project={project}/>
-								</li>
-							))
-						}
-					</Grid> --></article><article class="cta" data-astro-cid-j7pv25f6>${renderComponent($$result2, "ActionButton", $$ActionButton, { "href": "/projects/", "data-astro-cid-j7pv25f6": true }, { "default": ($$result3) => renderTemplate`
+</p></article><article class="gallery" data-astro-cid-j7pv25f6>${renderComponent($$result2, "Grid", $$Grid, { "variant": "offset", "data-astro-cid-j7pv25f6": true }, { "default": ($$result3) => renderTemplate`${projects.map((project) => renderTemplate`<li data-astro-cid-j7pv25f6>${renderComponent($$result3, "WorkPreview", $$WorkPreview, { "project": project, "data-astro-cid-j7pv25f6": true })}</li>`)}` })}</article><article class="cta" data-astro-cid-j7pv25f6>${renderComponent($$result2, "ActionButton", $$ActionButton, { "href": "/projects/", "data-astro-cid-j7pv25f6": true }, { "default": ($$result3) => renderTemplate`
 View All
 ${renderComponent($$result3, "Icon", $$Icon, { "icon": "arrow-right", "size": "1.2em", "data-astro-cid-j7pv25f6": true })}` })}</article></section></div>${renderComponent($$result2, "Contact", $$Contact, { "data-astro-cid-j7pv25f6": true })}</section>` })}`;
 }, "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/pages/index.astro", void 0);
@@ -218,4 +469,11 @@ ${renderComponent($$result3, "Icon", $$Icon, { "icon": "arrow-right", "size": "1
 const $$file = "D:/Documentos/Proyectos/1.Training/lombardidev.github.io/src/pages/index.astro";
 const $$url = "";
 
-export { $$Index as default, $$file as file, $$url as url };
+const index = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$Index,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+export { index as a, isRemotePath as i, joinPaths as j };
