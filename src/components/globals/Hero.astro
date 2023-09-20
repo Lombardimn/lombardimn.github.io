@@ -22,7 +22,9 @@ const {
             </span>
             {title}
         </h1>
+        {tagline && <p class='tagline'>{tagline}</p>}
     </div>
+    <slot />
 </article>
 
 <style>
