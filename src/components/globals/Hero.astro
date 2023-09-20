@@ -1,0 +1,36 @@
+---
+interface Props {
+    title: string,
+    subtitle?: string;
+    tagline?: string;
+    align?: 'start'| 'center'
+}
+
+const {
+    title,
+    subtitle,
+    tagline,
+    align = 'center'
+} = Astro.props
+---
+
+<article class:list={['hero stack gap-4', align]}>
+    <div class="stack gap-2">
+        <h1 class="title">
+            <span id="span-title">
+                {subtitle}
+            </span>
+            {title}
+        </h1>
+    </div>
+</article>
+
+<style>
+    .hero {
+        font-size: var(--text-lg);
+    }
+
+    #span-title{
+		opacity: 0.7;
+	}
+</style>

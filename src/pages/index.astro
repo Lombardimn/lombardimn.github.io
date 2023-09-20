@@ -1,69 +1,98 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from '@/layouts/Layout.astro';
+import Hero from '@/components/globals/Hero.astro';
+import Pill from '@/components/main/Pill.astro';
+import Icon from '@/components/globals/Icon.astro';
+import Skill from '@/components/globals/Skill.astro';
+import Grid from '@/components/main/Grid.astro';
+import ActionButton from '@/components/globals/ActionButton.astro';
+
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
-		<h1>PORFOLIO <span class="text-gradient">PERSONAL</span></h1>
-	</main>
+	<section class="stack gap-20 lg:gap-48">
+		<div class="wapper stack gap-8 lg:gap-20">
+			<section class="hero">
+				<Hero
+					subtitle ='Hola a todos 👋!\n'
+					title = 'Soy Matias Lombardi'
+					tagline='Analista Funcional, Desarrollador Frontend React & FullStack Java.'
+				>
+					<article class="roles">
+						<Pill>
+							<Icon
+								icon = 'code'
+								size = '1.33'
+							/>
+								Metódico
+						</Pill>
+						<Pill>
+                            <Icon 
+                                icon="microphone-stage" 
+                                size="1.33em"
+                            />
+                            Comunicativo
+                        </Pill>
+                        <Pill>
+                            <Icon
+								icon="change"
+								size="1.33em"
+                            />
+                            Adaptable
+                        </Pill>
+						<Pill>
+                            <Icon 
+                            icon="strategy" 
+                            size="1.33em"
+                            />
+                            Analítico
+                        </Pill>
+					</article>
+				</Hero>
+				<img
+					class="hero-img"
+					src=""
+					width="480"
+					height="620"
+					alt="Matias sonriendo con una remera azul con dos botones en el cuello, con un fondo estilo mancha de color turqueza."
+				>
+			</section>
+			<Skill />
+		</div>
+		<div class="wrapper stack gap-20 lg:gap-48">
+			<section class="section wtih-background with-cta">
+				<article class="section-header stack gap-2 lg:gap-4">
+					<h3>
+						Proyectos
+					</h3>
+					<p>
+						Echa un vistazo a algunos de mis trabajos destacados.
+					</p>
+				</article>
+				<article class="gallery">
+					<!-- <Grid variant='offset'>
+						{
+							projects.map((project) => (
+								<li>
+									<PorfolioPreview project={project}/>
+								</li>
+							))
+						}
+					</Grid> -->
+				</article>
+				<article class="cta">
+					<ActionButton href='/projects/'>
+                        View All
+                        <Icon 
+                            icon='arrow-right'
+                            size='1.2em' />
+                    </ActionButton>
+				</article>
+			</section>
+		</div>
+	</section>
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
+	
 </style>

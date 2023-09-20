@@ -1,0 +1,27 @@
+---
+import Icon from "@/components/globals/Icon.astro";
+
+export const currentYear = new Date().getFullYear();
+---
+
+<footer>
+    <div class="group">
+        <p>
+            Designed & Developed with
+            <a href="https://astro.build/">
+                Astro
+            </a>
+            <Icon
+                icon="rocket-launch"
+                size="1.2em"
+            />
+        </p>
+        <p>&copy; {currentYear} Lombardi Matias</p>
+    </div>
+
+    <p class="socials">
+        <a href="https://github.com/Lombardimn">GitHub</a>
+        <a href="https://linkedin.com/in/mnlombardi/">LinkedIn</a>
+        <a href="https://www.instagram.com/lombardimn/">Instagram</a>
+    </p>
+</footer>
