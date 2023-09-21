@@ -125,7 +125,7 @@ const iconLinks: { label: string,
         position: relative;
         font-family: var(--font-brand);
         font-weight: 500;
-        /* margin-bottom: 2.5rem; */
+        margin-bottom: 3.5rem;
     }
 
     .menu-header {
@@ -150,18 +150,18 @@ const iconLinks: { label: string,
         line-height: 1.1;
         color: var(--gray-0);
         text-decoration: none;
-        font-size: var(--text-xl);
     }
 
     .menu-button {
         position: relative;
-        display: flex;
-        border: 0;
-        border-radius: 999rem;
-        padding: .5rem;
-        font-size: 1.5rem;
-        color: var(--grey-300);
-        background: radial-gradient(var(--gray-999));
+		display: flex;
+		border: 0;
+		border-radius: 999rem;
+		padding: 0.5rem;
+		font-size: 1.5rem;
+		color: var(--gray-300);
+		background: radial-gradient(var(--gray-900), var(--gray-800) 150%);
+		box-shadow: var(--shadow-md);
     }
 
     .menu-button[aria-expanded='true'] {
@@ -204,9 +204,9 @@ const iconLinks: { label: string,
     }
 
     .link {
-        display: inline;
-        color: var(--gray-300);
-        text-decoration: none;
+        display: inline-block;
+		color: var(--gray-300);
+		text-decoration: none;
     }
 
     .link.active {
@@ -221,6 +221,7 @@ const iconLinks: { label: string,
         justify-content: space-between;
         gap: .75rem;
         padding: 1.5rem 2rem 1.5rem 1.5rem;
+        border-radius: 0 0 0.75rem 0.75rem;
         background-color: var(--gray-999);
         box-shadow: var(--shadow-lg);
     }
@@ -288,7 +289,7 @@ const iconLinks: { label: string,
 			font-size: var(--text-sm);
 			border-radius: 999rem;
 			border: 0;
-			padding: 1rem 0.5625rem;
+			padding: 0.5rem 0.5625rem;
 			background: radial-gradient(var(--gray-900), var(--gray-800) 150%);
 			box-shadow: var(--shadow-md);
 		}

@@ -1,0 +1,121 @@
+---
+import Contact from "@/components/globals/Contact.astro";
+import Hero from "@/components/globals/Hero.astro";
+import Layout from "@/layouts/Layout.astro";
+
+---
+
+<Layout 
+    title="Sobre Mí | Lombardi Matias"
+    description="Descripción personal y laboral sobre Matias Lombardi"
+>
+    <section class="stack gap-20">
+        <div class="wrapper about">
+            <Hero
+                title="Sobre Mí"
+                tagline="Muchas gracias por su visita. A continuación puede saber más sobre quien soy y como transite mí camino."
+            >
+                <img
+                    class="profile-img"
+                    height="720"
+                    width="1080"
+                    src="../public/assets/images/working.jpg" 
+                    alt="Matias Lombardi, posando en su escritorio HomeOffice"
+                >
+            </Hero>
+
+            <article>
+                <h2 class="section-title">Historia</h2>
+                <div class="content">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ea ipsum blanditiis hic minima a at aperiam temporibus quod ipsam.
+                    </p>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est odio rerum illo distinctio qui reiciendis deleniti praesentium atque laboriosam. Ad.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta perferendis magni possimus, assumenda reprehenderit quis in tenetur sit impedit consequatur!
+                    </p>
+                </div>
+            </article>
+
+            <article>
+                <h2 class="section-title">Experiencia</h2>
+                <div class="content">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt temporibus, molestiae voluptatem nisi aliquid magni reprehenderit tempore quia quod. Nobis?
+                    </p>
+                </div>
+            </article>
+
+            <article>
+                <h2 class="section-title">Educación</h2>
+                <div class="content">
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium soluta atque et quas aperiam accusamus cumque ab nesciunt, porro asperiores!
+                    </p>
+                </div>
+            </article>
+        </div>
+        <Contact />
+    </section>
+</Layout>
+
+<style>
+    .about {
+        display: flex;
+        flex-direction: column;
+        gap: 3.5;
+    }
+
+    .profile-img {
+        margin: 1.5rem 0 1.5rem 0;
+        border-radius: 1.5rem;
+        box-shadow: var(--shadow-md);
+    }
+
+    article {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        color: var(--gray-200);
+    }
+
+    .section-title {
+        grid-column-start: 1;
+        font-size: var(--text-xl);
+        color: var(--gray-0);
+    }
+
+    .content { 
+        grid-column: 2 / 4;
+        margin-bottom: 1.5rem;
+    }
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+    @media (min-width: 50rem) {
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 60% 1fr;
+        }
+
+        .about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+        article {
+            display: contents;
+            font-size: var(--text-lg);
+        }
+    }
+</style>
