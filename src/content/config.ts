@@ -1,7 +1,7 @@
-import { z, defineCollection } from 'astro:content';
+import { defineCollection, z } from 'astro:content';
 
 export const collections = {
-	project: defineCollection({
+	work: defineCollection({
 		schema: z.object({
 			title: z.string(),
 			description: z.string(),

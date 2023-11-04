@@ -1,119 +1,105 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import Hero from '@/components/globals/Hero.astro';
-import Pill from '@/components/main/Pill.astro';
-import Icon from '@/components/globals/Icon.astro';
-import Skill from '@/components/globals/Skill.astro';
-import Grid from '@/components/main/Grid.astro';
-import ActionButton from '@/components/globals/ActionButton.astro';
-import Contact from '@/components/globals/Contact.astro';
-import WorkPreview from '@/components/globals/WorkPreview.astro';
+import { getCollection } from "astro:content";
 
-import { getCollection } from 'astro:content';
+// components
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Pill from "../components/Pill.astro";
+import Icon from "../components/Icon.astro";
+import Skills from "../components/Skills.astro";
+import Grid from "../components/Grid.astro";
+import PortfolioPreview from "../components/PorfolioPreview.astro";
+import CallToAction from "../components/CallToAction.astro";
+import ContactCTA from "../components/ContactCTA.astro";
 
-// Obtención de contenidos - Enumera cuatro proyectos de trabajo más recientes.
-const projects = (await getCollection('project')).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()).slice(0, 4);
+// Content Fetching: List four most recent work projects
+const projects = (await getCollection("work"))
+	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+	.slice(0, 4);
 ---
 
-<Layout title="Lombardi Matias">
+<BaseLayout>
 	<section class="stack gap-20 lg:gap-48">
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<section class="hero">
 				<Hero
-					subtitle ='Hola a todos 👋!\n'
-					title = 'Soy Matias Lombardi'
-					tagline='Analista Funcional, Desarrollador Frontend React & FullStack Java.'
+					pretitle="Hola a  todos 👋!\n"
+					title='Soy Matias Lombardi'
+					tagline="Analista Funcional & Desarrollador Web"
+					align="start"
 				>
 					<article class="roles">
 						<Pill>
-							<Icon
-								icon = 'code'
-								size = '1.33'
-							/>
-								Metódico
+							<Icon icon="code" size="1.33em" />Metódico
 						</Pill>
 						<Pill>
-                            <Icon 
-                                icon="microphone-stage" 
-                                size="1.33em"
-                            />
-                            Comunicativo
-                        </Pill>
-                        <Pill>
-                            <Icon
-								icon="change"
+							<Icon
+								icon="microphone-stage"
 								size="1.33em"
-                            />
-                            Adaptable
-                        </Pill>
+							/>Comunicativo
+						</Pill>
 						<Pill>
-                            <Icon 
-                            icon="strategy" 
-                            size="1.33em"
-                            />
-                            Analítico
-                        </Pill>
+							<Icon icon="change" size="1.33em" />Adaptable
+						</Pill>
+						<Pill>
+							<Icon icon="strategy" size="1.33em" />Analítico
+						</Pill>
 					</article>
 				</Hero>
 				<img
-					class="hero-img"
-					src="/assets/images/avatar21.webp"
+					alt="Un avatar de Matias Lombardi mirando de frente con una mirada ladeada hacia el horizonte trasmitiendo confianza"
 					width="480"
 					height="620"
-					alt="Matias sonriendo con una remera azul con dos botones en el cuello, con un fondo estilo mancha de color turqueza."
-				>
+					src="/assets/images/avatar21.webp"
+				/>
 			</section>
-			<Skill />
+			<Skills />
 		</div>
+
 		<div class="wrapper stack gap-20 lg:gap-48">
 			<section class="section with-background with-cta">
 				<article class="section-header stack gap-2 lg:gap-4">
-					<h3>
-						Proyectos
-					</h3>
-					<p>
-						Echa un vistazo a algunos de mis trabajos destacados.
-					</p>
+					<h3>Proyectos</h3>
+					<p>Echa un vistazo a algunos de mis trabajos destacados.</p>
 				</article>
 				<article class="gallery">
-					<Grid variant='offset'>
+					<Grid variant="offset">
 						{
 							projects.map((project) => (
 								<li>
-									<WorkPreview project={project}/>
+									<PortfolioPreview project={project} />
 								</li>
 							))
 						}
 					</Grid>
 				</article>
 				<article class="cta">
-					<ActionButton href='/projects/'>
-                        View All
-                        <Icon 
-                            icon='arrow-right'
-                            size='1.2em' />
-                    </ActionButton>
+					<CallToAction href="/work/">
+						Ver Proyectos
+						<Icon icon="arrow-right" size="1.2em" />
+					</CallToAction>
 				</article>
 			</section>
 		</div>
-		<Contact />
+		<ContactCTA />
 	</section>
-</Layout>
+</BaseLayout>
 
 <style>
 	.hero {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			gap: 2rem;
-		}
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+	}
 
 	.roles {
 		display: none;
 	}
 
 	.hero img {
-		aspect-ratio: 5 / 5;
+		position: relative;
+		aspect-ratio: 1 / 1;
 		object-fit: cover;
 		object-position: top;
 		border-radius: 1.5rem;
@@ -135,9 +121,10 @@ const projects = (await getCollection('project')).sort((a, b) => b.data.publishD
 		}
 
 		.hero img {
-			aspect-ratio:auto;
+			aspect-ratio: 3 / 4;
 			border-radius: 4.5rem;
 			object-fit: cover;
+			object-position: center top;
 		}
 	}
 
@@ -146,32 +133,6 @@ const projects = (await getCollection('project')).sort((a, b) => b.data.publishD
 	.section {
 		display: grid;
 		gap: 2rem;
-	}
-
-	.with-background {
-		position: relative;
-	}
-
-	.with-background::before {
-		--hero-bg: var(--bg-image-subtle-2);
-
-		content: '';
-		position: absolute;
-		pointer-events: none;
-		left: 50%;
-		width: 100vw;
-		aspect-ratio: calc(2.25 / var(--bg-scale));
-		top: 0;
-		transform: translateY(-75%) translateX(-50%);
-		background: url('/assets/backgrounds/noise.png') top center/220px repeat,
-			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat, var(--gray-999);
-		background-blend-mode: overlay, normal, normal, normal;
-		mix-blend-mode: var(--bg-blend-mode);
-		z-index: -1;
-	}
-
-	.with-background.bg-variant::before {
-		--hero-bg: var(--bg-image-subtle-1);
 	}
 
 	.section-header {
@@ -189,12 +150,12 @@ const projects = (await getCollection('project')).sort((a, b) => b.data.publishD
 	@media (min-width: 50em) {
 		.section {
 			grid-template-columns: repeat(4, 1fr);
-			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
+			grid-template-areas: "header header header header" "gallery gallery gallery gallery";
 			gap: 5rem;
 		}
 
 		.section.with-cta {
-			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
+			grid-template-areas: "header header header cta" "gallery gallery gallery gallery";
 		}
 
 		.section-header {

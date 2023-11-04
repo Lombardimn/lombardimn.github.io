@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Grid from '../components/Grid.astro';
+import PortfolioPreview from '../components/PorfolioPreview.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('work')).sort(
+    (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+---
+
+<BaseLayout
+	title="Proyectos | Matias Lombardi"
+	description="Aprende sobre los proyectos más recientes de Matias Lombardi."
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-8">
+			<Hero
+				title="Mis Projectos"
+				tagline="Mira mis proyectos más recientes."
+				align="start"
+			/>
+			<Grid variant="offset">
+				{
+					projects.map((project) => (
+						<li>
+							<PortfolioPreview project={project} />
+						</li>
+					))
+				}
+			</Grid>
+		</main>
+		<ContactCTA />
+	</div>
+</BaseLayout>

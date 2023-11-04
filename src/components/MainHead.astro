@@ -1,0 +1,98 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import '../styles/global.css';
+
+interface Props {
+    title?: string | undefined;
+    description?: string | undefined;
+    contentAlt?: string | undefined;
+    contentDomain?: string | undefined;
+    contentUrl?: string | undefined;
+}
+
+const {
+    title = "Lombardi Matias: Personal Site",
+    description = "The personal site of Lombardi Matias",
+    contentAlt = 'Marca descriptivo de LombardiDev',
+    contentDomain = 'lombardidev.ar',
+    contentUrl = 'https://lombardidev.ar',
+} = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<meta name="generator" content={Astro.generator} />
+
+
+<!-- HTML Meta Tags -->
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content={contentUrl} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content="https://lombardidev.ar/assets/icons/logo1.png" />
+<meta property="og:image:alt" content={contentAlt} />
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:domain" content={contentDomain} />
+<meta property="twitter:url" content={contentUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content="https://lombardidev.ar/assets/icons/logo1.png" />
+<meta property="og:image:alt" content={contentAlt} />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap" rel="stylesheet" />
+
+<ViewTransitions />
+
+<script>
+	const setScheme = () => {
+		const schemeButton = document.querySelector('#scheme')
+		const colorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)')
+		let darkModeState = false
+
+		function toggleDarkMode(state: boolean) {
+			document.documentElement.classList.toggle('theme-dark', state)
+			darkModeState = state
+		}
+
+		function setDarkModeLocalStorage(state: boolean) {
+			localStorage.setItem('theme', String(state))
+		}
+
+		colorSchemeDark.addEventListener('change', e => {
+			darkModeState = e.matches
+
+			toggleDarkMode(darkModeState)
+			setDarkModeLocalStorage(darkModeState)
+		})
+
+		schemeButton?.addEventListener('click', () => {
+			darkModeState = !darkModeState
+
+			toggleDarkMode(darkModeState)
+			setDarkModeLocalStorage(darkModeState)
+		})
+
+		function getPreference() {
+			if (localStorage.getItem('theme')) {
+				return localStorage.getItem('theme') === 'true'
+			} else {
+				return colorSchemeDark.matches
+			}
+		}
+
+		toggleDarkMode(getPreference())
+	}
+
+	setScheme()
+
+	document.addEventListener('astro:after-swap', setScheme)
+</script>

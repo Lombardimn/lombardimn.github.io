@@ -1,96 +1,198 @@
 ---
-import Contact from "@/components/globals/Contact.astro";
-import Hero from "@/components/globals/Hero.astro";
-import Layout from "@/layouts/Layout.astro";
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ContactCTA from "../components/ContactCTA.astro";
 ---
 
-<Layout 
-    title="Sobre Mí | Lombardi Matias"
-    description="Descripción personal y laboral sobre Matias Lombardi"
->
-    <section class="stack gap-20">
-        <div class="wrapper about">
+<BaseLayout title="About | Matias Lombardi" description="About Matias Lombardi">
+    <div class="stack gap-20">
+        <main class="wrapper stack gap-8">
             <Hero
                 title="Sobre Mí"
-                tagline="Muchas gracias por su visita. A continuación puede saber más sobre quien soy y como transite mí camino."
+                tagline="Agradezco su visita y le invito a conocer más sobre mi identidad y trayectoria."
+                align="start"
             >
                 <img
-                    class="profile-img"
-                    height="720"
-                    width="1080"
-                    src="/assets/images/working.jpg" 
-                    alt="Matias Lombardi, posando en su escritorio HomeOffice"
-                >
+                    width="776.5"
+                    height="436.5"
+                    src="/assets/images/working.webp"
+                    alt="Matias Lombardi, sonriendo, de fondo su mundo resumido en un escritorio personalizado"
+                />
             </Hero>
-
-            <article>
+            <section>
                 <h2 class="section-title">Historia</h2>
                 <div class="content">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia ea ipsum blanditiis hic minima a at aperiam temporibus quod ipsam.
+                        Oriundo de la provincia de Buenos Aires, de niño migré a la ciudad de Córdoba, donde descubrí <span>mi pasión</span> por la tecnología. Inicialmente, decidí enfocarme en la parte física, adquiriendo conocimientos técnicos sobre hardware.
                     </p>
                     <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est odio rerum illo distinctio qui reiciendis deleniti praesentium atque laboriosam. Ad.
+                        Con el tiempo, mientras trabajaba en la industria manufacturera, <span>tuve la experiencia de desarrollar mi primer sistema en Visual Basic for Applications</span>, lo que en ese momento fue un logro significativo para mí. Este hecho encendió mi pasión por la programación. Decidí cambiar el rumbo de mi vida y me encaminé hacia la carrera de Ingeniería de Sistemas, dejando atrás mi trabajo anterior.
                     </p>
                     <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta perferendis magni possimus, assumenda reprehenderit quis in tenetur sit impedit consequatur!
+                        Tuve la oportunidad de aplicar tempranamente mis conocimientos en el entorno laboral de sistemas, participando en proyectos relacionados con SAP.
+                    </p>
+                    <p>
+                        Con el paso de los años, me di cuenta de que <span>la gestión de proyectos era una de mis mejores habilidades</span>, pero a medida que realizaba más tareas, algo no me satisfacía: no podía plasmar las funcionalidades o procesos que diseñaba. 
+                    </p>
+                    <p>
+                        Mi pasión por la programación me impulsó a seguir aprendiendo y creciendo. Decidí poner manos a la obra y comencé a especializarme como desarrollador. <span>Hoy en día, disfruto de la experiencia analítica en proyectos altamente complejos y de la capacidad para crear soluciones de alto rendimiento.</span>
                     </p>
                 </div>
-            </article>
-
-            <article>
-                <h2 class="section-title">Experiencia</h2>
-                <div class="content">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt temporibus, molestiae voluptatem nisi aliquid magni reprehenderit tempore quia quod. Nobis?
-                    </p>
-                </div>
-            </article>
-
-            <article>
+            </section>
+            <section>
                 <h2 class="section-title">Educación</h2>
-                <div class="content">
-                    <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium soluta atque et quas aperiam accusamus cumque ab nesciunt, porro asperiores!
-                    </p>
+                <span class="startpoint"></span>
+                <span class="startpoint"></span>
+                <span class="startpoint"></span>
+                <div class="box">
+                    <article class="pointer">
+                        <div class="content">
+                            <h3 class="subtitle-about">Ingeniería en Sistemas de la Información</h3>
+                            <p>Universidad Tecnológica Nacional - FRC</p>
+                            <span>2018 - Actualidad</span>
+                        </div>
+                    </article>
+                    <article class="pointer">
+                        <div class="content">
+                            <h3 class="subtitle-about">Ingeniería Industrial</h3>
+                            <p>Universidad Tecnológica Nacional - FRC</p>
+                            <span>2015 - 2018</span>
+                        </div>
+                    </article>
+                    <article class="pointer">
+                        <div class="content">
+                            <h3 class="subtitle-about">Tecnico Superior en Electronica</h3>
+                            <p>IPET N°48 Presidente Roca</p>
+                            <span>2007 - 2010</span>
+                        </div>
+                    </article>
                 </div>
-            </article>
-        </div>
-        <Contact />
-    </section>
-</Layout>
+                <span class="endpoint"></span>
+                <span class="endpoint"></span>
+                <span class="endpoint"></span>
+            </section>
+            <section>
+                <h2 class="section-title">Certificaciones</h2>
+                <section class="box-skills">
+                    <article class="stack gap-2 lg:gap-4">
+                        <h3>Desarrollador Frontend whit React</h3>
+                        <p>Universidad Tecnológica Nacional - FRC</p>
+                        <a href="http://">Certificado</a>
+                    </article>
+                    <article class="stack gap-2 lg:gap-4">
+                        <h3>FullStack Developer Java</h3>
+                        <p>Realizado por la Universidad Tecnológica Nacional - FRC</p>
+                        <a href="https://uve.frc.utn.edu.ar/mod/customcert/verify_certificate.php?contextid=53423&code=fWzEWlmfEL&qrcode=1" target="_blank">Certificado - Nivel Inicial</a>
+                        <a href="https://uve.frc.utn.edu.ar/mod/customcert/verify_certificate.php?contextid=62683&code=S0VAKyBWAP&qrcode=1" target="_blank">Certificado - Nivel Intermedio</a>
+                    </article>
+                    <article class="stack gap-2 lg:gap-4">
+                        <h3>JavaScript Algorithms and Data Structures</h3>
+                        <p>Otorgado por <a href="https://www.freecodecamp.org/" target="_blank">FreecodeCamp</a> para estudiantes autodidactas.</p>
+                        <a href="https://www.freecodecamp.org/certification/Lombardi_m/javascript-algorithms-and-data-structures">Certificado</a>
+                    </article>
+                    <article class="stack gap-2 lg:gap-4">
+                        <h3>Responsive Web Desing</h3>
+                        <p>Otorgado por <a href="https://www.freecodecamp.org/" target="_blank">FreecodeCamp</a> para estudiantes autodidactas.</p>
+                        <a href="https://www.freecodecamp.org/certification/Lombardi_m/responsive-web-design">Certificado</a>
+                    </article>
+                    <article class="stack gap-2 lg:gap-4">
+                        <h3>Introducción a los Algoritmos y la Programación</h3>
+                        <p>Dictado en <a href="https://www.todocodeacademy.com/" target="_blank">TodoCodeAcademy</a> de forma online para estudiantes autodidactas.</p>
+                        <a href="https://todocodeacademy.com/certificate/dra/">Certificado</a>
+                    </article>
+                </section>
+            </section>
+        </main>
+        <ContactCTA />
+    </div>
+</BaseLayout>
 
 <style>
-    .about {
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+        margin: auto;
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+    /******************************************* */
+    .subtitle-about {
+        color: var(--accent-dark);
+        font-size: var(--text-lg);
+    }
+
+    .startpoint,
+    .endpoint {
+        height: .2rem;
+        width: .2rem;
+        background-color: var(--accent-text-over);
+        border-radius: 50%;
+    }
+
+    .box {
+        position: relative;
+        border-left: .15rem solid var(--accent-text-over);
+        padding-top: 12px;
+    }
+
+    .pointer{
+    position: relative;
+    padding-left: 1.25rem;
+    }
+
+    .pointer::before {
+        content: '';
+        position: absolute;
+        left: -.68rem;
+        width: 1.25rem;
+        height: 1.25rem;
+        background-color: var(--accent-text-over);
+        border-radius: 50%;
+    }
+
+    .box-skills {
+		border: 1px solid var(--gray-800);
+		border-radius: 0.75rem;
+		padding: 1.5rem;
+		background-color: var(--gray-999_40);
+		box-shadow: var(--shadow-sm);
         display: flex;
-        flex-direction: column;
-        gap: 3.5;
-    }
+		flex-direction: column;
+		gap: 3rem;
+	}
 
-    .profile-img {
-        margin: 1.5rem 0 1.5rem 0;
-        border-radius: 1.5rem;
-        box-shadow: var(--shadow-md);
-    }
+	.box-skills h3 {
+		font-size: var(--text-lg);
+	}
 
-    article {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        color: var(--gray-200);
-    }
+	.box-skills p {
+		color: var(--gray-400);
+	}
+    /******************************************* */
 
-    .section-title {
-        grid-column-start: 1;
-        font-size: var(--text-xl);
-        color: var(--gray-0);
-    }
-
-    .content { 
-        grid-column: 2 / 4;
-        margin-bottom: 1.5rem;
-    }
+	.content {
+		grid-column: 2 / 4;
+        padding-bottom: 16px;
+	}
 
 	.content :global(a) {
 		text-decoration: 1px solid underline transparent;
@@ -103,19 +205,53 @@ import Layout from "@/layouts/Layout.astro";
 		text-decoration-color: currentColor;
 	}
 
-    @media (min-width: 50rem) {
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 60% 1fr;
-        }
+    .content p:first-child {
+        margin-top: 0;
+    }
+    .content p {
+        margin-top: 12px;
+    }
 
-        .about > :global(:first-child) {
+    .content p span {
+        background-color: var(--accent-regular);
+        color: var(--accent-text-over);
+        padding: 2px;
+    }
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
 			grid-column-start: 2;
 		}
 
-        article {
-            display: contents;
-            font-size: var(--text-lg);
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+
+        .startpoint,
+        .endpoint {
+            margin: -10px 0;
         }
-    }
+
+        .box {
+            margin: -10px 0;
+        }
+
+        .box-skills {
+			border-radius: 1.5rem;
+			padding: 2.5rem;
+            display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 5rem;
+		}
+
+		.box-skills h3 {
+			font-size: var(--text-xl);
+		}
+	}
 </style>
