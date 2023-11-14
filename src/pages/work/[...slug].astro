@@ -46,7 +46,7 @@ const { Content } = await entry.render();
 						entry.data.img && <img src={entry.data.img} alt={entry.data.img_alt || ''} />
 					}
 					<div class="cta">
-						<CallToAction href="https://lombardi-tic-tac-toe.netlify.app/">
+						<CallToAction href={entry.data.url}>
 							Ver
 							<Icon icon="browser" size="1.2em" />
 						</CallToAction>
