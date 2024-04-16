@@ -23,7 +23,6 @@ const {
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />
 
-
 <!-- HTML Meta Tags -->
 <title>{title}</title>
 <meta name="description" content={description} />
@@ -46,11 +45,8 @@ const {
 <meta property="og:image:alt" content={contentAlt} />
 
 <link rel="icon" type="image/png" href="https://lombardidev.ar/assets/icons/logo2.png" class="icono-redondo"/>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap" rel="stylesheet" />
 
-<ViewTransitions />
+<ViewTransitions fallback="none" />
 
 <script>
 	const setScheme = () => {

@@ -1,7 +1,8 @@
 ---
 title: TIC - TAC - TOE
 publishDate: 2023-09-25 23:02:00
-img: /assets/imgProjects/tic-tac-toe.png
+idImg: '3'
+img: /assets/imgProjects/tic-tac-toe.webp
 img_alt: Foto donde se muestra la interface del juego que se compone del tablero, botonera e informe de turno
 description: |
   Tic Tac Toe es un juego clásico que se utiliza a menudo como ejemplo para enseñar programación y lógica.

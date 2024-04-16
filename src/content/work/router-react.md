@@ -1,11 +1,12 @@
 ---
 title: Router para React
 publishDate: 2023-11-06 01:54:00
-img: /assets/imgProjects/react-router-clon.png
+idImg: '1'
+img: /assets/imgProjects/react-router-clon.webp
 img_alt: Se muestra la pagina principal de NPM, demostrando que el paquete se encuentra activo y disponible.
 description: |
   Una versión simplificada del famoso **React Router Dom** pero con todas sus funcionalidades en linea y a disposición del público en general.
-url: https://lombardi-shopping-cart.netlify.app/
+url: https://www.npmjs.com/package/07-lombardi-router
 tags:
   - TypeScript
   - Eslint

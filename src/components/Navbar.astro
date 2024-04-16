@@ -5,79 +5,93 @@ import { iconPaths } from "../utils/IconPaths";
 
 /* Main menu items */
 const textLinks: { label: string; href: string }[] = [
-    { label: "Inicio", href: "/" },
-    { label: "Proyectos", href: "/work/" },
-    { label: "Sobre Mí", href: "/about/" },
+	{ label: "Inicio", href: "/" },
+	{ label: "Proyectos", href: "/work/" },
+	{ label: "Sobre Mí", href: "/about/" },
 ];
 
 /* Icon links to social media — edit these with links to your profiles! */
-const iconLinks: { 
-                    label: string; 
-                    href: string; 
-                    icon: keyof typeof iconPaths } [] = [
-    { label: 'GitHub', href: 'https://github.com/Lombardimn', icon: 'github-logo' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/in/mnlombardi/', icon: 'linkedin-logo' },
-    { label: 'Instagram', href: 'https://www.instagram.com/lombardimn/', icon: 'instagram-logo' },
+const iconLinks: {
+	label: string;
+	href: string;
+	icon: keyof typeof iconPaths;
+}[] = [
+	{
+		label: "GitHub",
+		href: "https://github.com/Lombardimn",
+		icon: "github-logo",
+	},
+	{
+		label: "LinkedIn",
+		href: "https://linkedin.com/in/mnlombardi/",
+		icon: "linkedin-logo",
+	},
+	{
+		label: "Instagram",
+		href: "https://www.instagram.com/lombardimn/",
+		icon: "instagram-logo",
+	},
 ];
 ---
 
 <nav>
-    <section class="menu-header">
-        <a href = "/" class="site-title">
-            <img
-            class="nav-img"
-            src="/assets/icons/logomain.png"
-            alt="Imagen Logo de LombardiDev"
-			loading="lazy">
-        </a>
-        <menu-button>
-            <template>
-                <button class="menu-button" aria-expanded="false">
-                    <span class="sr-only">Menu</span>
-                    <Icon icon="list" />
-                </button>
-            </template>
-        </menu-button>
-    </section>
-    <section id="menu-content" hidden>
-        <ul class="nav-items">
-            {
-                textLinks.map(({ label, href }) => (
-                    <li>
-                        <a
-                            aria-current={Astro.url.pathname === href}
-                            class:list={[
-                                'link',
-                                {
-                                    active:
-                                        Astro.url.pathname === href ||
-                                        (href !== '/' && Astro.url.pathname.startsWith(href)),
-                                },
-                            ]}
-                            href={href}
-                        >
-                            {label}
-                        </a>
-                    </li>
-                ))
-            }
-        </ul>
-        <section class="menu-footer">
-            <div class="socials">
-                {
-                    iconLinks.map(({ href, icon, label }) => (
-                        <a href={href} class="social">
-                            <span class="sr-only">{label}</span>
-                            <Icon icon={icon} />
-                        </a>
-                    ))
-                }
-            </div>
-            <div class="theme-toggle">
+	<section class="menu-header">
+		<a href="/" class="site-title">
+			<img
+				class="nav-img"
+				src="/assets/icons/logomain.webp"
+				alt="Imagen Logo de LombardiDev"
+				loading="lazy"
+			/>
+		</a>
+		<menu-button>
+			<template>
+				<button class="menu-button" aria-expanded="false">
+					<span class="sr-only">Menu</span>
+					<Icon icon="list" />
+				</button>
+			</template>
+		</menu-button>
+	</section>
+	<section id="menu-content" hidden>
+		<ul class="nav-items">
+			{
+				textLinks.map(({ label, href }) => (
+					<li>
+						<a
+							aria-current={Astro.url.pathname === href}
+							class:list={[
+								"link",
+								{
+									active:
+										Astro.url.pathname === href ||
+										(href !== "/" && Astro.url.pathname.startsWith(href)),
+								},
+							]}
+							href={href}
+						>
+							{label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+		<section class="menu-footer">
+			<div class="socials">
+				{
+					iconLinks.map(({ href, icon, label }) => (
+						<a href={href} class="social">
+							<span class="sr-only">{label}</span>
+							<Icon icon={icon} />
+						</a>
+					))
+				}
+			</div>
+			<div class="theme-toggle">
 				<ThemeToggle />
 			</div>
-        </section>
-    </section>
+		</section>
+	</section>
 </nav>
 
 <style>
@@ -98,12 +112,12 @@ const iconLinks: {
 	}
 
 	.nav-img {
-        height: 72px;
-        width: 72px;
-        position: absolute;
+		height: 72px;
+		width: 72px;
+		position: absolute;
 		top: 10px;
-        filter: var(--shadow-dropmd);
-    }
+		filter: var(--shadow-dropmd);
+	}
 
 	.site-title {
 		display: flex;
@@ -126,7 +140,7 @@ const iconLinks: {
 		box-shadow: var(--shadow-md);
 	}
 
-	.menu-button[aria-expanded='true'] {
+	.menu-button[aria-expanded="true"] {
 		color: var(--gray-0);
 		background: linear-gradient(180deg, var(--gray-600), transparent),
 			radial-gradient(var(--gray-900), var(--gray-800) 150%);
@@ -139,7 +153,7 @@ const iconLinks: {
 	.menu-button::before {
 		position: absolute;
 		inset: -1px;
-		content: '';
+		content: "";
 		background: var(--gradient-stroke);
 		border-radius: 999rem;
 		z-index: -1;
@@ -227,12 +241,12 @@ const iconLinks: {
 		}
 
 		.nav-img {
-            height: 96px;
-            width: 96px;
+			height: 96px;
+			width: 96px;
 			top: auto;
 			left: -22px;
-            filter: var(--shadow-dropmd);
-        }
+			filter: var(--shadow-dropmd);
+		}
 
 		.site-title {
 			font-size: var(--text-lg);
@@ -256,7 +270,7 @@ const iconLinks: {
 		.nav-items::before {
 			position: absolute;
 			inset: -1px;
-			content: '';
+			content: "";
 			background: var(--gradient-stroke);
 			border-radius: 999rem;
 			z-index: -1;
@@ -266,8 +280,8 @@ const iconLinks: {
 			padding: 0.5rem 1rem;
 			border-radius: 999rem;
 			transition:
-				color var(--theme-transition),
-				background-color var(--theme-transition);
+			color var(--theme-transition),
+			background-color var(--theme-transition);
 		}
 
 		.link:hover,
@@ -304,11 +318,11 @@ const iconLinks: {
 		}
 
 		.nav-img {
-            height: 120px;
-            width: 120px;
-            top: auto;
-            filter: var(--shadow-dropmd);
-        }
+			height: 120px;
+			width: 120px;
+			top: auto;
+			filter: var(--shadow-dropmd);
+		}
 	}
 	@media (forced-colors: active) {
 		.link.active {
@@ -323,36 +337,35 @@ const iconLinks: {
 			super();
 
 			// Inject menu toggle button when JS runs.
-			this.appendChild(this.querySelector('template')!.content.cloneNode(true));
-			const btn = this.querySelector('button')!;
+			this.appendChild(this.querySelector("template")!.content.cloneNode(true));
+			const btn = this.querySelector("button")!;
 
 			// Hide menu (shown by default to support no-JS browsers).
-			const menu = document.getElementById('menu-content')!;
+			const menu = document.getElementById("menu-content")!;
 			menu.hidden = true;
 
 			// Add "menu-content" class in JS to avoid covering content in non-JS browsers.
-			menu.classList.add('menu-content');
+			menu.classList.add("menu-content");
 
 			/** Set whether the menu is currently expanded or collapsed. */
 			const setExpanded = (expand: boolean) => {
-				btn.setAttribute('aria-expanded', expand ? 'true' : 'false');
+				btn.setAttribute("aria-expanded", expand ? "true" : "false");
 				menu.hidden = !expand;
 			};
 
 			// Toggle menu visibility when the menu button is clicked.
-			btn.addEventListener('click', () => setExpanded(menu.hidden));
+			btn.addEventListener("click", () => setExpanded(menu.hidden));
 
 			// Hide menu button for large screens.
 			const handleViewports = (e: MediaQueryList | MediaQueryListEvent) => {
 				setExpanded(e.matches);
 				btn.hidden = e.matches;
-
 			};
-			const mediaQueries = window.matchMedia('(min-width: 50em)');
+			const mediaQueries = window.matchMedia("(min-width: 50em)");
 			handleViewports(mediaQueries);
 
-			mediaQueries.addEventListener('change', handleViewports);
+			mediaQueries.addEventListener("change", handleViewports);
 		}
 	}
-	customElements.define('menu-button', MenuButton);
+	customElements.define("menu-button", MenuButton);
 </script>

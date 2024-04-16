@@ -33,6 +33,11 @@ const { href } = Astro.props;
 	}
 
 	/* Overlay for hover effects. */
+	a:hover,
+	a:focus {
+		outline: 2px solid var(--accent-overlay);
+	}
+
 	a::after {
 		content: '';
 		position: absolute;
@@ -44,7 +49,7 @@ const { href } = Astro.props;
 
 	a:focus::after,
 	a:hover::after {
-		background-color: hsla(var(--gray-999-basis), 0.3);
+		background-color: hsla(var(--gray-999-basis), 0.6);
 	}
 
 	@media (min-width: 50em) {

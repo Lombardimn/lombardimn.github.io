@@ -30,7 +30,7 @@ const { Content } = await entry.render();
 			<header>
 				<div class="wrapper stack gap-2">
 					<a class="back-link" href="/work/"><Icon icon="arrow-left" /> Mis proyectos</a>
-					<Hero title={entry.data.title} align="start">
+					<Hero posttitle={entry.data.title} align="start">
 						<div class="details">
 							<div class="tags">
 								{entry.data.tags.map((t) => <Pill>{t}</Pill>)}
@@ -43,7 +43,7 @@ const { Content } = await entry.render();
 			<main class="wrapper">
 				<div class="stack gap-10 content">
 					{
-						entry.data.img && <img src={entry.data.img} alt={entry.data.img_alt || ''} />
+						entry.data.img && <img src={entry.data.img} alt={entry.data.img_alt || ''} transition:name={`image-${entry.data.idImg}-projects`} transition:persist/>
 					}
 					<div class="cta">
 						<CallToAction href={entry.data.url}>

@@ -1,19 +1,20 @@
 ---
 interface Props {
 	pretitle?: string;
-    title: string;
+    title?: string;
+	posttitle?: string;
     tagline?: string;
     align?: 'start' | 'center';
 }
 
-const { align = 'center', tagline, title, pretitle } = Astro.props;
+const { align = 'center', tagline, title, pretitle, posttitle } = Astro.props;
 ---
 
 <article class:list={['hero stack gap-4', align]}>
     <div class="stack gap-2">
-        <h1 class="title">
-			<span id="span-title">{pretitle}</span>{title}
-		</h1>
+      <h1 class="title">
+				{pretitle}<span id="span-title">{title}</span>{posttitle}
+			</h1>
         {tagline && <p class="tagline">{tagline}</p>}
     </div>
     <slot />
@@ -39,8 +40,7 @@ const { align = 'center', tagline, title, pretitle } = Astro.props;
 	}
 
 	#span-title{
-		opacity: 0.7;
-        color: var(--accent-regular);
+    color: var(--accent-regular);
 		display: block;
 	}
 

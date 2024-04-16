@@ -148,6 +148,10 @@ const projects = (await getCollection("work"))
 	}
 
 	@media (min-width: 50em) {
+		.hero img {
+			display: none;
+		}
+
 		.section {
 			grid-template-columns: repeat(4, 1fr);
 			grid-template-areas: "header header header header" "gallery gallery gallery gallery";
@@ -202,4 +206,16 @@ const projects = (await getCollection("work"))
 			height: 9.5rem;
 		}
 	}
+
+	@media (min-width: 64em) {
+		.hero img {
+			display: block;
+		}
+
+	.cta {
+		display: flex;
+    flex-flow: column;
+    justify-content: center;
+	}
+}
 </style>

@@ -8,14 +8,14 @@ import ContactCTA from "../components/ContactCTA.astro";
     <div class="stack gap-20">
         <main class="wrapper stack gap-8">
             <Hero
-                title="Sobre Mí"
+                posttitle="Sobre Mí"
                 tagline="Agradezco su visita y le invito a conocer más sobre mi identidad y trayectoria."
                 align="start"
             >
                 <img
                     width="776.5"
                     height="436.5"
-                    src="/assets/images/working.webp"
+                    src="/assets/images/working.jpg"
                     alt="Matias Lombardi, sonriendo, de fondo su mundo resumido en un escritorio personalizado"
                 />
             </Hero>
@@ -77,7 +77,7 @@ import ContactCTA from "../components/ContactCTA.astro";
                     <article class="stack gap-2 lg:gap-4">
                         <h3>Desarrollador Frontend whit React</h3>
                         <p>Universidad Tecnológica Nacional - FRC</p>
-                        <a href="http://">Certificado</a>
+                        <a href="https://uve.frc.utn.edu.ar/mod/customcert/verify_certificate.php?contextid=53423&code=fWzEWlmfEL&qrcode=1">Certificado</a>
                     </article>
                     <article class="stack gap-2 lg:gap-4">
                         <h3>FullStack Developer Java</h3>
@@ -132,6 +132,7 @@ import ContactCTA from "../components/ContactCTA.astro";
 		grid-column-start: 1;
 		font-size: var(--text-xl);
 		color: var(--gray-0);
+        margin-top: 2rem;
 	}
 
     /******************************************* */
@@ -170,11 +171,12 @@ import ContactCTA from "../components/ContactCTA.astro";
     }
 
     .box-skills {
-		border: 1px solid var(--gray-800);
-		border-radius: 0.75rem;
-		padding: 1.5rem;
+		/* border: 1px solid var(--gray-800); */
+		/* box-shadow: var(--shadow-sm); */
+		/* border-radius: 0.75rem; */
+        border: none;
+        padding: 1.5rem;
 		background-color: var(--gray-999_40);
-		box-shadow: var(--shadow-sm);
         display: flex;
 		flex-direction: column;
 		gap: 3rem;
