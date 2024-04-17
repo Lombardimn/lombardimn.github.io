@@ -1,61 +1,19 @@
 ---
 interface Props {
 	href: string;
+	target?: string;
+	rel?: string;
+	class?: string;
 }
 
-const { href } = Astro.props;
+const { href, target, rel } = Astro.props;
 ---
 
-<a href={href}><slot /></a>
-
-<style>
-	a {
-		position: relative;
-		display: flex;
-		place-content: center;
-		text-align: center;
-		padding: 0.56em 2em;
-		gap: 0.8em;
-		color: var(--accent-text-over);
-		text-decoration: none;
-		line-height: 1.1;
-		border-radius: 999rem;
-		overflow: hidden;
-		background: var(--gradient-accent-orange);
-		box-shadow: var(--shadow-md);
-		white-space: nowrap;
-	}
-
-	@media (min-width: 20em) {
-		a {
-			font-size: var(--text-lg);
-		}
-	}
-
-	/* Overlay for hover effects. */
-	a:hover,
-	a:focus {
-		outline: 2px solid var(--accent-overlay);
-	}
-
-	a::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-		transition: background-color var(--theme-transition);
-		mix-blend-mode: overlay;
-	}
-
-	a:focus::after,
-	a:hover::after {
-		background-color: hsla(var(--gray-999-basis), 0.6);
-	}
-
-	@media (min-width: 50em) {
-		a {
-			padding: 1.125rem 2.5rem;
-			font-size: var(--text-xl);
-		}
-	}
-</style>
+<a 
+	href={href} 
+	target={target} 
+	rel={rel}
+	class="relative flex py-2 px-8 rounded-full overflow-hidden shadow-tl-shadow-md text-center text-tl-text-over no-underline leading-tight whitespace-nowrap place-content-center gap-3 transition ease-in-out duration-200 hover:outline hover:outline-2 hover:outline-tl-overlay focus:outline focus:outline-2 focus:outline-tl-overlay after:content-[''] after:absolute after:inset-0 after:pointer-events-none hover:scale-105 focus:scale-105 text-large md:py-3 md:px-10 md:text-xlarge bg-gradient-to-r from-[#078C5B] via-tl-regular to-tl-dark"
+>
+	<slot />
+</a>

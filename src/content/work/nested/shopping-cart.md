@@ -1,8 +1,9 @@
 ---
 title: Shopping Cart -Prueba Técnica
 publishDate: 2023-10-27 00:00:00
-img: /assets/imgProjects/shopping-cart.png
-img_alt: Visual del buscador de peliculas
+idImg: '2'
+img: /assets/imgProjects/shopping-cart.webp
+img_alt: Visual del shopping cart de peliculas
 description: |
   Una prueba técnica, donde abarco desde la interaccion de estados y ciclos de vida en React con la implementacion de una API externa.
 url: https://lombardi-shopping-cart.netlify.app/

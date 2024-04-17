@@ -1,7 +1,7 @@
 ---
 title: Buscador de Peliculas -Prueba Técnica
 publishDate: 2023-10-27 00:00:00
-idImg: '2'
+idImg: '4'
 img: /assets/imgProjects/query-films.webp
 img_alt: Visual del buscador de peliculas
 description: |
