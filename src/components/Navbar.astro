@@ -1,7 +1,7 @@
 ---
-import Icon from "../components/Icon.astro";
-import ThemeToggle from "../components/ThemeToggle.astro";
-import { iconPaths } from "../utils/IconPaths";
+import Icon from "@/components/Icon.astro";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+import { iconPaths } from "@/utils/IconPaths";
 
 /* Main menu items */
 const textLinks: { label: string; href: string }[] = [
@@ -39,7 +39,7 @@ const iconLinks: {
 		<a href="/" class="site-title">
 			<img
 				class="nav-img"
-				src="/assets/icons/logomain.webp"
+				src="assets/icons/logomain.webp"
 				alt="Imagen Logo de LombardiDev"
 				loading="lazy"
 			/>

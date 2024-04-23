@@ -2,15 +2,15 @@
 import { getCollection } from "astro:content";
 
 // components
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import Pill from "../components/Pill.astro";
-import Icon from "../components/Icon.astro";
-import Skills from "../components/Skills.astro";
-import Grid from "../components/Grid.astro";
-import PortfolioPreview from "../components/PorfolioPreview.astro";
-import CallToAction from "../components/CallToAction.astro";
-import ContactCTA from "../components/ContactCTA.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/Hero.astro";
+import Pill from "@/components/Pill.astro";
+import Icon from "@/components/Icon.astro";
+import Skills from "@/components/Skills.astro";
+import Grid from "@/components/Grid.astro";
+import PortfolioPreview from "@/components/PorfolioPreview.astro";
+import CallToAction from "@/components/CallToAction.astro";
+import ContactCTA from "@/components/ContactCTA.astro";
 
 // Content Fetching: List four most recent work projects
 const projects = (await getCollection("work"))
@@ -47,7 +47,7 @@ const projects = (await getCollection("work"))
 					</article>
 					<div class=" w-80 pt-4 m-auto md:m-0">
 						<CallToAction 
-							href="/assets/files/lombardi-cv.pdf" 
+							href="assets/files/lombardi-cv.pdf" 
 							target="_blank"
 							rel="noopener noreferrer"
 						>
@@ -59,7 +59,7 @@ const projects = (await getCollection("work"))
 					alt="Un avatar de Matias Lombardi mirando de frente con una mirada ladeada hacia el horizonte trasmitiendo confianza"
 					width="480"
 					height="620"
-					src="/assets/images/avatar21.webp"
+					src="assets/images/avatar21.webp"
 				/>
 			</section>
 			<Skills />
