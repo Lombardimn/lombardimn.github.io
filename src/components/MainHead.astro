@@ -56,6 +56,7 @@ const {
 
 		function toggleDarkMode(state: boolean) {
 			document.documentElement.classList.toggle('theme-dark', state)
+			document.documentElement.classList.toggle('dark', state)
 			darkModeState = state
 		}
 
