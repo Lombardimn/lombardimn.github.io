@@ -6,18 +6,18 @@ interface Props {
 const { variant } = Astro.props;
 ---
 
-<ul class:list={['grid', { offset: variant === 'offset', small: variant === 'small' }]}>
+<ul class:list={['grid', 'auto-rows-fr', 'gap-4', 'list-none', 'p-0', 'md:grid-cols-[1fr_1fr]', 'md:gap-8', 'lg:gap-16', { offset: variant === 'offset', small: variant === 'small' }]}>
 	<slot />
 </ul>
 
 <style>
-	.grid {
+	/* .grid {
 		display: grid;
 		grid-auto-rows: 1fr;
 		gap: 1rem;
 		list-style: none;
 		padding: 0;
-	}
+	} */
 
 	.grid.small {
 		grid-template-columns: 1fr 1fr;
@@ -30,10 +30,10 @@ const { variant } = Astro.props;
 	}
 
 	@media (min-width: 50em) {
-		.grid {
+		/* .grid {
 			grid-template-columns: 1fr 1fr;
 			gap: 4rem;
-		}
+		} */
 
 		.grid.offset {
 			--row-offset: 7.5rem;
